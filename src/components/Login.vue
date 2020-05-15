@@ -54,10 +54,11 @@ export default {
     resetLoginForm () {
       this.$refs.loginFormRef.resetFields()
     },
+    // 登录按钮
     login () {
       this.$refs.loginFormRef.validate(async valid => {
         if (!valid) return
-        const res = await this.$http.post('', this.loginForm)
+        const res = await this.$http.post('myHelloWorld', this.loginForm)
         if (res.status !== 200) return this.$message.error('登陆失败')
         this.$message.success('登陆成功')
         console.log(res)
