@@ -25,7 +25,6 @@ const routes = [
       { path: '/edit', component: Edit }
     ]
   }
-
 ]
 
 const router = new VueRouter({

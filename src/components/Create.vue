@@ -2,7 +2,7 @@
     <div>
         <h3>myq</h3>
         <el-tree
-  :data="data"
+  :data="treedata"
   node-key="id"
   default-expand-all
   @node-drag-start="handleDragStart"
@@ -14,6 +14,11 @@
   draggable
   :allow-drop="allowDrop"
   :allow-drag="allowDrag">
+  <div>
+    <p>aaa</p>
+    <button>ads</button>
+  </div>
+
 </el-tree>
     </div>
 </template>
@@ -21,7 +26,7 @@
 export default {
   data () {
     return {
-      data: [{
+      treedata: [{
         id: 1,
         label: '一级 1',
         children: [{

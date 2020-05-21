@@ -27,12 +27,23 @@
     </el-aside>
     <!-- 右侧内容主题 -->
     <el-main>
-        <div v-for="form in forms" :key="form.id">
 
-            {{form.title}}
-        </div>
+问卷标题： {{this.Questionnaires[myindex].title}}
+    <el-form :model="Questionnaires[myindex]">
+      <el-form-item v-for="(q,index) in Questionnaires[myindex].questions" :key="index" :label="q.question">
+        <el-input v-if="q.type=='input'" v-model="q.answer"></el-input>
+        <el-checkbox-group v-if="q.type=='checkbox'" v-model="q.answer">
+          <el-checkbox v-for="(c,index) in q.choices" :key="index" :label="c"></el-checkbox>
+        </el-checkbox-group>
+        <el-radio-group v-if="q.type=='radio'" v-model="q.answer">
+          <el-radio v-for="(c,index) in q.choices" :key="index" :label="c"></el-radio>
+        </el-radio-group>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" >提交</el-button>
+        <el-button>取消</el-button></el-form-item>
+    </el-form>
 
-main
     </el-main>
     </el-container>
 </template>
@@ -41,17 +52,57 @@ main
 export default {
   data () {
     return {
+      myindex: '',
       menulist: [],
       forms: [
         { id: 1, type: '1', title: 't1', text: 't1' },
         { id: 2, type: '2', title: 't2', text: 't2' },
         { id: 3, type: '1', title: 't1', text: 't1' },
         { id: 4, type: '2', title: 't2', text: 't2' }
+      ],
+      Questionnaires: [
+        {
+          title: '问卷一',
+          questions: [
+            {
+              type: 'input',
+              question: '单行输入问题',
+              answer: ''
+            },
+            {
+              type: 'radio',
+              question: '单选问题',
+              choices: ['选项1', '选项2'],
+              answer: ''
+            },
+            {
+              type: 'checkbox',
+              question: '多选问题',
+              choices: ['选项1', '选项2'],
+              answer: []
+            }
+          ]
+        },
+        {
+          title: '问卷二',
+          questions: [
+            {
+              type: 'radio',
+              question: '单选问题',
+              choices: ['1', '2', '3'],
+              answer: ''
+            }
+          ]
+        }
       ]
     }
   },
   created () {
     this.getMenuList()
+  },
+  mounted () {
+    this.myindex = this.$route.query.choose
+    console.log(this.myindex)
   },
   methods: {
 

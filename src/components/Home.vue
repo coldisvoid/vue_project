@@ -8,7 +8,7 @@
       </div>
       <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :router="true">
         <el-menu-item index="/create">创建问卷</el-menu-item>
-        <el-menu-item index="/edit">我的问卷</el-menu-item>
+        <el-menu-item index="/mine">我的问卷</el-menu-item>
         <el-menu-item index="4"><a href="https://www.ele.me" target="_blank"></a></el-menu-item>
      </el-menu>
       <el-button type="info" @click="logout">退出</el-button>
